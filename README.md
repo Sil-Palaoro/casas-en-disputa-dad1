@@ -2,7 +2,7 @@
 
 ### Integrantes
 * Silvina Palaoro
-* Karen
+* Karen Tymoszcuk
 * Micaela Coradini
 * Lucas Cioccale
 * Alejandra Pizarro
@@ -31,13 +31,13 @@
 Para correr el proyecto se necesita Node.js instalado. Desde la terminal en la carpeta del proyecto, se ejecuta:
 
 ```bash
-node casas.js
+node index.js
 ```
 
 ### Estructura del proyecto
 ```text
 casas-en-disputa-dad1/
-├── casas.js
+├── index.js
 └── README.md
 ```
 

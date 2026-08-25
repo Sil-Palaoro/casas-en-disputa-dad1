@@ -146,11 +146,60 @@ function calcularMovimientosValidos(posicion, cantidad, fichas) {    //cantidad 
     return movimientos;
 };
 
-const semilla = 12345;
+// EJEMPLO 1
 
-let tablero = crearTablero();
+const semilla1 = 12345;
 
-let casas = generarCasas(semilla);
+let tablero1 = crearTablero();
+let casas1 = generarCasas(semilla1);
 
-console.log("Tablero: ",tablero);
-console.log("Casas: ", casas);
+console.log("--------------------");
+console.log("EJEMPLO 1");
+console.log("Semilla:", semilla1);
+console.log("Tablero:", tablero1);
+console.log("Casas:", casas1);
+
+
+// EJEMPLO 2
+
+const semilla2 = 54321;
+
+let tablero2 = crearTablero();
+let casas2 = generarCasas(semilla2);
+
+console.log("--------------------");
+console.log("EJEMPLO 2");
+console.log("Semilla:", semilla2);
+console.log("Tablero:", tablero2);
+console.log("Casas:", casas2);
+
+
+// EJEMPLO 3
+
+const semilla3 = 2026;
+
+let tablero3 = crearTablero();
+let casas3 = generarCasas(semilla3);
+
+console.log("--------------------");
+console.log("EJEMPLO 3");
+console.log("Semilla:", semilla3);
+console.log("Tablero:", tablero3);
+console.log("Casas:", casas3);
+
+
+// PRUEBA DE MOVIMIENTOS VÁLIDOS
+
+const cantidad = 2;
+
+const movimientosValidos = calcularMovimientosValidos(
+    jugador1.fichas[0],
+    cantidad,
+    jugador1.fichas
+);
+
+console.log("--------------------");
+console.log("MOVIMIENTOS VÁLIDOS DEL JUGADOR 1");
+console.log("Posición inicial:", jugador1.fichas[0]);
+console.log("Cantidad de casillas:", cantidad);
+console.log("Movimientos válidos:", movimientosValidos);

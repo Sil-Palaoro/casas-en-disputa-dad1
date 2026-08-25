@@ -1,187 +1,118 @@
-# Casas en disputa - DAD1
-Estado inicial y generación de casas
+# Casas en disputa
 
-El programa está realizado en JavaScript y se puede ejecutar utilizando Node.js.
+### Integrantes
+* Silvina Palaoro
+* Karen
+* Micaela Coradini
+* Lucas Cioccale
+* Alejandra Pizarro
 
-El tablero tiene un tamaño de 10 filas por 10 columnas. Al comenzar, el Jugador 1 se encuentra en la posición [0,0] y el Jugador 2 en [9,9].
+---
 
-Las 5 casas neutrales se generan utilizando una semilla. Esto permite que, si se utiliza la misma semilla, se obtenga siempre la misma distribución de casas.
+## Consignas del proyecto
+* Implementar en JavaScript el estado inicial del tablero 10x10.
+* Crear un generador determinista de casas mediante semilla.
+* Desarrollar una función que calcule los movimientos válidos.
+* Ejecutar el programa utilizando Node.js.
 
-También se controla que las casas no estén en las posiciones iniciales de los jugadores y que no haya dos casas en la misma posición.
+---
 
-Los movimientos posibles de una ficha son arriba, abajo, izquierda y derecha. El tablero es toroidal, por lo que si una ficha sale por uno de los bordes, vuelve a aparecer por el lado contrario.
+## Decisiones de modelado
 
-Ejemplo de salida
-Ejemplo 1
+* **Tablero:** Tiene un tamaño de 10 filas por 10 columnas. El Jugador 1 arranca en la esquina `[0,0]` y el Jugador 2 en la esquina opuesta `[9,9]`. Es un tablero toroidal (si una ficha sale por un borde, reaparece en el lado opuesto).
+* **Generación de casas:** Se ubican exactamente 5 casas neutrales. Usamos una semilla matemática para que la distribución sea determinista (con la misma semilla siempre salen en el mismo lugar). El código valida que ninguna casa caiga en la posición de salida de los jugadores y que no se superpongan entre sí.
+* **Movimientos:** Las fichas se mueven en 4 direcciones (arriba, abajo, izquierda y derecha). No hay movimientos diagonales.
+* **Cálculo de validez:** La función `calcularMovimientosValidos()` analiza a qué casillas puede llegar una ficha según la distancia a recorrer. No se permite terminar un turno en una casilla donde ya hay otra ficha.
 
-Semilla utilizada:
+---
 
-const semilla = 12345;
+## Ejecución
 
+Para correr el proyecto se necesita Node.js instalado. Desde la terminal en la carpeta del proyecto, se ejecuta:
 
-Resultado obtenido:
-
-Tablero: [
-  [ '.', '.', '.', '.', '.', '.', '.', '.', '.', '.' ],
-  [ '.', '.', '.', '.', '.', '.', '.', '.', '.', '.' ],
-  [ '.', '.', '.', '.', '.', '.', '.', '.', '.', '.' ],
-  [ '.', '.', '.', '.', '.', '.', '.', '.', '.', '.' ],
-  [ '.', '.', '.', '.', '.', '.', '.', '.', '.', '.' ],
-  [ '.', '.', '.', '.', '.', '.', '.', '.', '.', '.' ],
-  [ '.', '.', '.', '.', '.', '.', '.', '.', '.', '.' ],
-  [ '.', '.', '.', '.', '.', '.', '.', '.', '.', '.' ],
-  [ '.', '.', '.', '.', '.', '.', '.', '.', '.', '.' ],
-  [ '.', '.', '.', '.', '.', '.', '.', '.', '.', '.' ]
-]
-
-Casas: [ [ 5, 6 ], [ 9, 1 ], [ 4, 5 ], [ 0, 7 ], [ 9, 0 ] ]
-
-Ejemplo 2
-
-Para comprobar que la semilla modifica la distribución, se puede utilizar:
-
-const semilla = 54321;
-
-
-Resultado obtenido al ejecutar el programa:
-
-Semilla: 54321
-
-Casas: [ PEGAR ACÁ EL RESULTADO REAL ]
-
-Ejemplo 3
-
-También se puede utilizar:
-
-const semilla = 2026;
-
-
-Resultado obtenido al ejecutar el programa:
-
-Semilla: 2026
-
-Casas: [ PEGAR ACÁ EL RESULTADO REAL ]
-
-
-Decisiones de modelado
-
-En esta primera etapa se buscó implementar una base simple y clara para el funcionamiento del juego.
-
-Tablero
-
-Se utilizó un tablero de 10 x 10, representado mediante filas y columnas.
-
-El Jugador 1 comienza en [0,0] y el Jugador 2 en [9,9], ya que son esquinas opuestas del tablero.
-
-Generación de casas
-
-Se generan exactamente 5 casas neutrales utilizando una semilla.
-
-La utilización de una semilla permite que la generación sea determinista. Esto significa que utilizando la misma semilla se obtiene siempre la misma distribución de casas.
-
-También se controla que:
-
-ninguna casa esté en la posición inicial de un jugador;
-no haya dos casas en la misma posición;
-las casas tengan una distribución razonablemente equilibrada entre los jugadores.
-Movimientos
-
-Las fichas solamente pueden moverse en cuatro direcciones:
-
-arriba;
-abajo;
-izquierda;
-derecha.
-
-No se permiten movimientos diagonales.
-
-El tablero es toroidal, por lo que al atravesar un borde la ficha aparece por el lado contrario.
-
-Movimientos válidos
-
-La función calcularMovimientosValidos() calcula las posiciones a las que puede llegar una ficha según la cantidad de casillas que debe recorrer.
-
-No se considera válido terminar el movimiento en una posición ocupada por otra ficha.
-
-Ejecución con Node.js
-
-Para ejecutar el programa se necesita tener instalado Node.js.
-
-Desde la terminal de Visual Studio Code se puede ejecutar:
-
+```bash
 node casas.js
+```
 
-
-Si el archivo tiene otro nombre, se debe reemplazar casas.js por el nombre correspondiente.
-
-Estructura del proyecto
-
-El proyecto queda organizado de la siguiente manera:
-
+### Estructura del proyecto
+```text
 casas-en-disputa-dad1/
 ├── casas.js
 └── README.md
+```
 
+---
 
-El archivo casas.js contiene el código del programa y README.md contiene la explicación, los ejemplos de salida y las decisiones de modelado.
+## Ejemplos de salida
 
-## Para la semilla
+Acá se muestran tres ejecuciones con semillas diferentes para verificar que el tablero arranca vacío y las casas cambian de posición según el valor utilizado.
 
-const semilla = 12345;
+### EJEMPLO 1
+**Semilla:** `12345`
 
-
-## Obtuvimos:
-
-Tablero:  [
-  [
-    '.', '.', '.', '.',
-    '.', '.', '.', '.',
-    '.', '.'
-  ],
-  [
-    '.', '.', '.', '.',
-    '.', '.', '.', '.',
-    '.', '.'
-  ],
-  [
-    '.', '.', '.', '.',
-    '.', '.', '.', '.',
-    '.', '.'
-  ],
-  [
-    '.', '.', '.', '.',
-    '.', '.', '.', '.',
-    '.', '.'
-  ],
-  [
-    '.', '.', '.', '.',
-    '.', '.', '.', '.',
-    '.', '.'
-  ],
-  [
-    '.', '.', '.', '.',
-    '.', '.', '.', '.',
-    '.', '.'
-  ],
-  [
-    '.', '.', '.', '.',
-    '.', '.', '.', '.',
-    '.', '.'
-  ],
-  [
-    '.', '.', '.', '.',
-    '.', '.', '.', '.',
-    '.', '.'
-  ],
-  [
-    '.', '.', '.', '.',
-    '.', '.', '.', '.',
-    '.', '.'
-  ],
-  [
-    '.', '.', '.', '.',
-    '.', '.', '.', '.',
-    '.', '.'
-  ]
+```javascript
+// Tablero inicial
+[
+  [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", ".", "."]
 ]
-Casas:  [ [ 5, 6 ], [ 9, 1 ], [ 4, 5 ], [ 0, 7 ], [ 9, 0 ] ]
+
+// Ubicación de las casas
+Casas: [ [ 5, 6 ], [ 9, 1 ], [ 4, 5 ], [ 0, 7 ], [ 9, 0 ] ]
+```
+
+---
+
+### EJEMPLO 2
+**Semilla:** `54321`
+
+```javascript
+// Tablero inicial
+[
+  [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", ".", "."]
+]
+
+// Ubicación de las casas
+Casas: [ [ 6, 4 ], [ 6, 5 ], [ 9, 2 ], [ 7, 4 ], [ 0, 9 ] ]
+```
+
+---
+
+### EJEMPLO 3
+**Semilla:** `2026`
+
+```javascript
+// Tablero inicial
+[
+  [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", ".", "."]
+]
+
+// Ubicación de las casas
+Casas: [ [ 6, 4 ], [ 1, 9 ], [ 7, 2 ], [ 9, 1 ], [ 2, 5 ] ]
+```

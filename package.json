@@ -1,0 +1,25 @@
+{
+  "name": "casas-en-disputa-dad1",
+  "version": "1.0.0",
+  "description": "Casas en disputa",
+  "readme": "https://github.com/Sil-Palaoro/casas-en-disputa-dad1#readme",
+  "bugs": {
+    "url": "https://github.com/Sil-Palaoro/casas-en-disputa-dad1/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sil-Palaoro/casas-en-disputa-dad1.git"
+  },
+  "license": "ISC",
+  "author": "* Silvina Palaoro\r * Karen Tymoszcuk\r * Micaela Coradini\r * Lucas Cioccale\r * Alejandra Pizarro",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

@@ -93,19 +93,19 @@ function calcularPosicion(posicion, direccion, cantidad) {
     let fila = posicion[0];
     let columna = posicion[1];
 
-    if (direccion === "arriba") {
+    if (direccion === "N") {
         fila = (fila - cantidad + FILAS) % FILAS;
     }
 
-    if (direccion === "abajo") {
+    if (direccion === "S") {
         fila = (fila + cantidad) % FILAS;
     }
 
-    if (direccion === "izquierda") {
+    if (direccion === "O") {
         columna = (columna - cantidad + COLUMNAS) % COLUMNAS;
     }
 
-    if (direccion === "derecha") {
+    if (direccion === "E") {
         columna = (columna + cantidad) % COLUMNAS;
     }
 
@@ -117,10 +117,10 @@ function calcularPosicion(posicion, direccion, cantidad) {
 
 function calcularMovimientosValidos(posicion, cantidad, fichas) {    //cantidad es el valor del dado
     const direcciones = [
-        "arriba",
-        "abajo",
-        "izquierda",
-        "derecha"
+        "N",
+        "S",
+        "O",
+        "E"
     ];
 
     const movimientos = [];

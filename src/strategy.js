@@ -1,9 +1,9 @@
 
-export default function chooseMove(state, jugador, semilla){
+export default function chooseMove(state, semilla){
 
     console.log(state);
 
-    let fichas = jugador.fichas;
+    let fichas = state.jugador.fichas;
     let directions = ["N", "S", "E", "O"]
 
     // Generador determinista mediante semilla
@@ -23,7 +23,7 @@ export default function chooseMove(state, jugador, semilla){
     const fichaIndex = Math.floor(generador() * fichas.length);
     const directionIndex = Math.floor(generador() * directions.length);
     
-    let fichaId = jugador.id + (fichaIndex + 1); 
+    let fichaId = state.jugador.id + (fichaIndex + 1); 
     let direction = directions[directionIndex];
     let movement = {
         "pieceId": fichaId,

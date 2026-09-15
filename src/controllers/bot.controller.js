@@ -4,10 +4,10 @@ import chooseMove from "../strategy.js";
 export class BotController {
     static async botMove (req, res) {
         try {
-            const {state, jugador, semilla} = req.body;
+            const {state, semilla} = req.body;
 
 
-            let movement = chooseMove(state, jugador, semilla)
+            let movement = chooseMove(state, semilla)
 
             res.status(200).json(movement);
         } catch (error){

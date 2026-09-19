@@ -4,10 +4,13 @@ import chooseMove from "../strategy.js";
 export class BotController {
     static async botMove (req, res) {
         try {
-            const {state, semilla} = req.body;
+            const {state} = req.body;
 
+            if(!body) {
+                res.status(400).json({ message: "La llamada no tiene un body"});
+            } 
 
-            let movement = chooseMove(state, semilla)
+            let movement = chooseMove(state)
 
             res.status(200).json(movement);
         } catch (error){

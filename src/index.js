@@ -115,7 +115,7 @@ function calcularPosicion(posicion, direccion, cantidad) {
 
 // Funcion con los movimientos validos
 
-function calcularMovimientosValidos(posicion, cantidad, fichas) {    //cantidad es el valor del dado
+export function calcularMovimientosValidos(posicion, cantidad, fichas) {    //cantidad es el valor del dado
     const direcciones = [
         "N",
         "S",

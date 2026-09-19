@@ -1,7 +1,6 @@
 {
   "jugador": {
-    "id": "B",
-    "fichas": [1, 2]
+    "id": "B"
   },
   "dado": 2,
   "tablero": [

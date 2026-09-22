@@ -4,35 +4,40 @@ export default function chooseMove(state){
     let misFichas = [];    //Coordenadas de mis fichas
     let casas = [];     //Coordenadas de las casas
     let otrasFichas = [];   //Coordenadas de las fichas del otro jugador
-    let directions = ["N", "S", "E", "O"]   //Direcciones posibles
-
-    let direction = "";
-
-    let movements = [];
+    let movements = {};
 
     function encontrarMisFichas(state) {
-      for (const row of state.tablero) {
-        for (const cell of row) {
-          if (cell != "" && cell != "N" && cell.startsWith(state.jugador)) 
-            misFichas.push({ row, cell });
+      for (let fila = 0; fila < state.tablero.length; fila++) {
+        for (let columna = 0; columna < state.tablero[fila].length; columna++) {
+          const cell = state.tablero[fila][columna];
+
+          if (cell != "" && cell != "N" && cell.startsWith(state.jugador)) { 
+            misFichas.push([fila, columna, cell]);
+          }
         }
       }
     }
 
     function encontrarCasas(state) {
-      for (const row of state.tablero) {
-        for (const cell of row) {
-          if (cell === "N") 
-            casas.push([row, cell]);
+      for (let fila = 0; fila < state.tablero.length; fila++) {
+        for (let columna = 0; columna < state.tablero[fila].length; columna++) {
+          const cell = state.tablero[fila][columna];
+
+          if (cell === "N") {
+            casas.push([fila, columna]);
+          }
         }
       }
     }
 
     function encontrarOtrasFichas(state) {
-      for (const row of state.tablero) {
-        for (const cell of row) {
-          if (cell != "" && cell != "N" && !cell.startsWith(state.jugador)) 
-            otrasFichas.push({ row, cell });
+      for (let fila = 0; fila < state.tablero.length; fila++) {
+        for (let columna = 0; columna < state.tablero[fila].length; columna++) {
+          const cell = state.tablero[fila][columna];
+
+          if (cell != "" && cell != "N" && !cell.startsWith(state.jugador)) {
+            otrasFichas.push([fila, columna]);
+            }
         }
       }
     }
@@ -103,11 +108,11 @@ export default function chooseMove(state){
   };
   
   const distEntreFichaYCasa = ( ficha, casa) => {
-    let filaFicha = ficha.row;
-    let filaCasa = casa.row;
+    let filaFicha = ficha[0];
+    let filaCasa = casa[0];
 
-    let columnaFicha = ficha.cell; 
-    let columnaCasa = casa.cell;
+    let columnaFicha = ficha[1]; 
+    let columnaCasa = casa[1];
     
     //Para calcular la distancia entre dos fichas en un tablero toroidal, se calcula el minimo de la diferencia entre las filas ( o columnas) y el ancho ( o alto) y la diferencia de solo las filas.
     
@@ -122,7 +127,9 @@ export default function chooseMove(state){
 
   for (let i=0; i < misFichas.length; i++) {
 
-      let movimientosValidos = calcularMovimientosValidos(misFichas[i], state.dado, fichasJugadores);
+      let posicionFicha =  [misFichas[i][0], misFichas[i][1]];
+
+      let movimientosValidos = calcularMovimientosValidos(posicionFicha, state.dado, fichasJugadores);
 
       let movimientoYDistancia = [];
 
@@ -139,13 +146,14 @@ export default function chooseMove(state){
       
       // Para una ficha tengo movimientoYDistancia = [{movimiento: [5, 6], distancia: 5}, {movimiento: [3, 7], distancia: 4}]
         
+      let distancias = [];
+
       for(let m = 0; m < movimientoYDistancia.length; m++) {
-        let distancias = [];
         distancias.push(movimientoYDistancia[m].distancia);
       }
       
       const minimaDistancia = distancias.reduce((min, val) => (val < min ? val : min));
-      const mejorMovimiento = movimientoYDistancia.filter(item => item.distancia === minimaDistancia);
+      const mejorMovimiento = movimientoYDistancia.find(item => item.distancia === minimaDistancia);
 
       //Necesito dar la ficha y direccion, que cumpla que la posicion de esa direccion dentro de movimientosValidos, 
       // sea igual a el movimiento dentro de mejorMovimiento
@@ -154,21 +162,22 @@ export default function chooseMove(state){
       // Quiero movimientosValidos[].direccion
       // que cumpla movimientosValidos.posicion === mejorMovimiento.movimiento
 
-      let mejorMovimientoValido = movimientosValidos.filter(i => movimientosValidos[i].posicion === mejorMovimiento.movimiento);
+      let mejorMovimientoValido = movimientosValidos.find(
+        movimiento => 
+          movimiento.posicion[0] === mejorMovimiento.movimiento[0] &&
+          movimiento.posicion[1] === mejorMovimiento.movimiento[1]
+      );
 
       let direccionMejorJugada = mejorMovimientoValido.direccion;
 
-      console.log(direccionMejorJugada);
 
       let fichaActual = state.jugador + (i +1);
       
-      Object.assign(movements, { [fichaActual]: [direccionMejorJugada]});      
+      Object.assign(movements, { [fichaActual]: direccionMejorJugada})
 
   }
 
-  // Debemos devolver [{"A1": "N"}, {"A2": "S"}]
-
-
+  // Debemos devolver {"A1": "N", "A2": "S"}
     return movements;
 };
 

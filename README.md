@@ -4,8 +4,8 @@
 * Silvina Palaoro
 * Karen Tymoszcuk
 * Micaela Coradini
-* Lucas Cioccale
 * Ingrid Torres
+* Lucas Cioccale
 * Alejandra Pizarro
 
 ---

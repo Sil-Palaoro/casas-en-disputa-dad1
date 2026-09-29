@@ -5,6 +5,7 @@
 * Karen Tymoszcuk
 * Micaela Coradini
 * Lucas Cioccale
+* Ingrid Torres
 * Alejandra Pizarro
 
 ---

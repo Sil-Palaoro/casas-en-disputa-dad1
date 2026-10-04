@@ -6,6 +6,15 @@ export default function chooseMove(state){
     let otrasFichas = [];   //Coordenadas de las fichas del otro jugador
     let movements = {};
 
+    // valida que el estado no sea nulo y que el tablero sea un array, tenga jugador, y el dado sea un numero.
+    if (!state||!Array.isArray (state.tablero)||!state.jugador||typeof state.dado !== 'number') {
+      return {} ; 
+    }
+
+    //valida que el dado contenga un numero entero mayor a 0
+    if (state.dado <= 0) return {} ; 
+
+
     function encontrarMisFichas(state) {
       for (let fila = 0; fila < state.tablero.length; fila++) {
         for (let columna = 0; columna < state.tablero[fila].length; columna++) {
@@ -124,7 +133,6 @@ export default function chooseMove(state){
 
 // [{direccion: "N", posicion: [3, 5]}, {direccion: "S", posicion: [7,4]}, {direccion: "O", posicion: [2,6]}, {direccion: "E", posicion: [1,8]},]
 
-
   for (let i=0; i < misFichas.length; i++) {
 
       let posicionFicha =  [misFichas[i][0], misFichas[i][1]];
@@ -170,11 +178,13 @@ export default function chooseMove(state){
 
       let direccionMejorJugada = mejorMovimientoValido.direccion;
 
+      //Busca la ficha que está en cell, dentro del array de fichas
+      let fichaActual = misFichas[i][2] ;
 
-      let fichaActual = state.jugador + (i +1);
-      
+      //Asignamos al objeto movements la dicha y la dirección de la mejor jugada
       Object.assign(movements, { [fichaActual]: direccionMejorJugada})
-
+    
+      fichasJugadores.push([mejorMovimiento.movimiento[0], mejorMovimiento.movimiento[1]]) ;
   }
 
   // Debemos devolver {"A1": "N", "A2": "S"}

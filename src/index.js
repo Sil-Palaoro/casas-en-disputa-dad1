@@ -1,4 +1,4 @@
-// CASAS EN DISPUTA
+git// CASAS EN DISPUTA
 
 // Estado inicial y constantes
 
@@ -180,6 +180,8 @@ const semilla3 = 2026;
 
 let tablero3 = crearTablero();
 let casas3 = generarCasas(semilla3);
+
+
 
 console.log("--------------------");
 console.log("EJEMPLO 3");

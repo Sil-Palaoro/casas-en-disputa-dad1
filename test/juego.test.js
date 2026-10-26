@@ -1,5 +1,5 @@
 import { describe, test, expect } from '@jest/globals';
-import chooseMove from '../../src/ia.js'; // Ajusta la ruta si tu archivo se llama index.js o server.js
+import chooseMove from '../../src/strategy.js'; 
 
 describe('Pruebas Unitarias - Bot de Casas', () => {
   

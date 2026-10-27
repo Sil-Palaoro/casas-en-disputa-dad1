@@ -1,4 +1,4 @@
-git// CASAS EN DISPUTA
+// CASAS EN DISPUTA - primer borrador del juego
 
 // Estado inicial y constantes
 

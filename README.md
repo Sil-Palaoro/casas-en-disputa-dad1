@@ -3,7 +3,7 @@
 ### Integrantes
 * Silvina Palaoro
 * Karen Tymoszcuk
-* Micaela Coradini
+* Micaela Coradini <3
 * Ingrid Torres
 * Lucas Cioccale
 * Alejandra Pizarro
